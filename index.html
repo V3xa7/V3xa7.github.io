@@ -3,195 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas Observasi - Epson EB-X600</title>
-    
-    <!-- Tailwind CSS untuk Styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Custom CSS untuk Animasi & Glassmorphism -->
+    <title>Laporan Observasi - Epson EB-X600</title>
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --bg-color: #f3f4f6;
+            --text-color: #1f2937;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #020617; /* Slate 950 */
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,0.2) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,0.1) 0, transparent 50%);
-            background-attachment: fixed;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8; /* Ditingkatkan agar paragraf lebih nyaman dibaca */
         }
 
-        /* Glassmorphism Card Style */
-        .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 3.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Hover effect pada card */
-        .glass-card:hover {
-            border-color: rgba(59, 130, 246, 0.5);
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            transform: rotate(30deg);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .authors-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .authors-box p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0.3rem 0;
+        }
+
+        .authors-box .class-name {
+            display: block;
+            margin-top: 10px;
+            font-weight: 700;
+            color: #fbbf24;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content Styling */
+        main {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
-        /* Animasi Muncul (Fade-in & Slide-up) */
-        .animate-fade-in {
-            animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(30px);
+        .card h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
         }
 
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        .card p {
+            font-size: 1.05rem;
+            color: #4b5563;
+            text-align: justify; /* Membuat rata kanan-kiri untuk paragraf */
+            text-indent: 2rem; /* Menambahkan indentasi di awal paragraf agar benar-benar terlihat seperti paragraf baku */
+        }
 
-        @keyframes fade-in-up {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
             }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
+            .card {
+                padding: 1.5rem;
             }
-        }
-
-        /* Gradasi Teks */
-        .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            .card p {
+                text-align: left; /* Rata kiri lebih baik untuk layar kecil */
+                text-indent: 1.5rem;
+            }
         }
     </style>
 </head>
-<body class="text-slate-300 min-h-screen selection:bg-blue-500 selection:text-white pb-12">
+<body>
 
-    <!-- Header / Hero Section -->
-    <header class="pt-20 pb-12 px-6 text-center animate-fade-in">
-        <div class="inline-block mb-4 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium tracking-wide">
-            Tugas Laporan Hasil Observasi
-        </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-            Proyektor <span class="text-gradient">Epson EB-X600</span>
-        </h1>
+    <header>
+        <h1>Teks Laporan Hasil Observasi</h1>
+        <p>Objek Observasi: Proyektor Epson EB-X600</p>
         
-        <!-- Informasi Siswa -->
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-8 bg-slate-900/50 inline-flex mx-auto p-4 md:px-8 rounded-2xl border border-slate-800">
-            <div class="flex items-center gap-3">
-                <div class="bg-blue-500/20 p-2 rounded-lg text-blue-400">
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                </div>
-                <div class="text-left">
-                    <p class="text-sm text-slate-400">Disusun Oleh:</p>
-                    <p class="font-semibold text-slate-100">Haikal Al Barr Prasetyo & Daffa Dzakky D</p>
-                </div>
-            </div>
-            
-            <div class="hidden md:block w-px h-10 bg-slate-700"></div>
-            
-            <div class="flex items-center gap-3">
-                <div class="bg-purple-500/20 p-2 rounded-lg text-purple-400">
-                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-                </div>
-                <div class="text-left">
-                    <p class="text-sm text-slate-400">Kelas:</p>
-                    <p class="font-semibold text-slate-100">X TKJ 1</p>
-                </div>
-            </div>
+        <div class="authors-box">
+            <p>Haikal Al Barr Prasetyo</p>
+            <p>Daffa dzakky D</p>
+            <span class="class-name">KELAS X TKJ 1</span>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-4xl mx-auto px-6 grid gap-6 relative z-10">
-        
-        <!-- Kartu 1: Pernyataan Umum -->
-        <section class="glass-card rounded-2xl p-6 md:p-8 animate-fade-in delay-1">
-            <div class="flex items-center gap-4 mb-4">
-                <div class="bg-blue-500 text-white p-3 rounded-xl shadow-lg shadow-blue-500/30">
-                    <i data-lucide="info" class="w-6 h-6"></i>
-                </div>
-                <h2 class="text-2xl font-semibold text-white">Pernyataan Umum</h2>
-            </div>
-            <div class="h-px w-full bg-slate-700/50 mb-5"></div>
-            <p class="leading-relaxed text-slate-300 text-lg text-justify">
-                Epson EB-X600 adalah sebuah proyektor yang digunakan untuk menampilkan gambar, video, atau presentasi dari komputer maupun perangkat lainnya ke layar yang lebih besar. Proyektor ini sering digunakan di sekolah, kantor, dan ruang rapat karena mampu menghasilkan tampilan yang jelas dan terang.
-            </p>
+    <main>
+        <!-- Bagian Pernyataan Umum -->
+        <section class="card">
+            <h2>Pernyataan Umum</h2>
+            <p>Epson EB-X600 adalah sebuah proyektor yang digunakan untuk menampilkan gambar, video, atau presentasi dari komputer maupun perangkat lainnya ke layar yang lebih besar. Proyektor ini sering digunakan di sekolah, kantor, dan ruang rapat karena mampu menghasilkan tampilan yang jelas dan terang.</p>
         </section>
 
-        <!-- Kartu 2: Deskripsi Bagian -->
-        <section class="glass-card rounded-2xl p-6 md:p-8 animate-fade-in delay-2">
-            <div class="flex items-center gap-4 mb-4">
-                <div class="bg-indigo-500 text-white p-3 rounded-xl shadow-lg shadow-indigo-500/30">
-                    <i data-lucide="layers" class="w-6 h-6"></i>
-                </div>
-                <h2 class="text-2xl font-semibold text-white">Deskripsi Bagian</h2>
-            </div>
-            <div class="h-px w-full bg-slate-700/50 mb-5"></div>
-            <p class="leading-relaxed text-slate-300 text-lg text-justify mb-4">
-                Epson EB-X600 terdiri dari beberapa bagian, yaitu:
-            </p>
-            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <li class="flex items-start gap-3 bg-slate-800/30 p-3 rounded-lg border border-slate-700/50">
-                    <i data-lucide="aperture" class="w-5 h-5 text-indigo-400 mt-1 flex-shrink-0"></i>
-                    <span><strong>Lensa Proyektor:</strong> Berfungsi memproyeksikan gambar ke layar.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-slate-800/30 p-3 rounded-lg border border-slate-700/50">
-                    <i data-lucide="lightbulb" class="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0"></i>
-                    <span><strong>Lampu Proyektor:</strong> Menghasilkan cahaya agar gambar terlihat jelas.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-slate-800/30 p-3 rounded-lg border border-slate-700/50">
-                    <i data-lucide="sliders-horizontal" class="w-5 h-5 text-green-400 mt-1 flex-shrink-0"></i>
-                    <span><strong>Tombol Kontrol:</strong> Digunakan untuk mengatur pengoperasian proyektor.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-slate-800/30 p-3 rounded-lg border border-slate-700/50">
-                    <i data-lucide="cable" class="w-5 h-5 text-blue-400 mt-1 flex-shrink-0"></i>
-                    <span><strong>Port HDMI/VGA:</strong> Menghubungkan proyektor dengan komputer atau perangkat lain.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-slate-800/30 p-3 rounded-lg border border-slate-700/50">
-                    <i data-lucide="volume-2" class="w-5 h-5 text-pink-400 mt-1 flex-shrink-0"></i>
-                    <span><strong>Speaker:</strong> Berfungsi mengeluarkan suara bawaan.</span>
-                </li>
-                <li class="flex items-start gap-3 bg-slate-800/30 p-3 rounded-lg border border-slate-700/50">
-                    <i data-lucide="plug" class="w-5 h-5 text-red-400 mt-1 flex-shrink-0"></i>
-                    <span><strong>Kabel Daya:</strong> Digunakan untuk menyalurkan listrik ke perangkat.</span>
-                </li>
-            </ul>
+        <!-- Bagian Deskripsi Bagian -->
+        <section class="card">
+            <h2>Deskripsi Bagian</h2>
+            <p>Epson EB-X600 terdiri dari beberapa bagian, yaitu lensa proyektor, lampu proyektor, tombol kontrol, port HDMI/VGA, speaker, dan kabel daya. Lensa berfungsi memproyeksikan gambar ke layar. Lampu proyektor menghasilkan cahaya agar gambar terlihat jelas. Tombol kontrol digunakan untuk mengatur pengoperasian proyektor. Port HDMI/VGA digunakan untuk menghubungkan proyektor dengan komputer atau perangkat lain. Speaker berfungsi mengeluarkan suara, sedangkan kabel daya digunakan untuk menyalurkan listrik.</p>
         </section>
 
-        <!-- Kartu 3: Deskripsi Manfaat -->
-        <section class="glass-card rounded-2xl p-6 md:p-8 animate-fade-in delay-3">
-            <div class="flex items-center gap-4 mb-4">
-                <div class="bg-purple-500 text-white p-3 rounded-xl shadow-lg shadow-purple-500/30">
-                    <i data-lucide="star" class="w-6 h-6"></i>
-                </div>
-                <h2 class="text-2xl font-semibold text-white">Deskripsi Manfaat</h2>
-            </div>
-            <div class="h-px w-full bg-slate-700/50 mb-5"></div>
-            <p class="leading-relaxed text-slate-300 text-lg text-justify">
-                Epson EB-X600 bermanfaat untuk menampilkan materi presentasi, gambar, dan video pada layar yang lebih besar sehingga mudah dilihat banyak orang. Proyektor ini membantu proses pembelajaran di sekolah, rapat di kantor, serta berbagai kegiatan yang membutuhkan tampilan visual yang jelas dan efektif.
-            </p>
+        <!-- Bagian Deskripsi Manfaat -->
+        <section class="card">
+            <h2>Deskripsi Manfaat</h2>
+            <p>Epson EB-X600 bermanfaat untuk menampilkan materi presentasi, gambar, dan video pada layar yang lebih besar sehingga mudah dilihat banyak orang. Proyektor ini membantu proses pembelajaran di sekolah, rapat di kantor, serta berbagai kegiatan yang membutuhkan tampilan visual yang jelas dan efektif.</p>
         </section>
-        
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center mt-16 text-slate-500 text-sm animate-fade-in delay-3">
-        <p>© 2026 Tugas Observasi - Kelas X TKJ 1</p>
+    <footer>
+        <p>&copy; 2026 Tugas Observasi Kelas X TKJ 1 - Dibuat dengan HTML & CSS.</p>
     </footer>
 
-    <!-- Initialize Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
 
